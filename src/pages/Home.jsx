@@ -201,7 +201,7 @@ import ExploreMore from "../Components/core/HomePage/ExploreMore";
 // ... Existing imports ...
 
 const Home = () => {
-  const scrollRef = useRef(null);
+ 
 
   return (
     <motion.div >
@@ -294,7 +294,7 @@ const Home = () => {
 
             <div className="flex flex-row gap-7 text-white lg:mt-8">
               <YellowBtn text={'Explore Full Catalog ->'}  linkedTo={"/signup"}> </YellowBtn>
-              <BlackBtn  text={'Learn more'}linkedTo={"/signup"}></BlackBtn>
+              <BlackBtn  text={'Learn more'} linkedTo={"/signup"}></BlackBtn>
             </div>
 
           </div>

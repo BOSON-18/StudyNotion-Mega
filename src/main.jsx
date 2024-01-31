@@ -4,16 +4,16 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import {store} from "./utils/store.jsx"
+import appStore from "./utils/store.jsx"
 import { Toaster } from 'react-hot-toast'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Provider store={store}>
-    <BrowserRouter>
+    <Provider  store={appStore}>
+    {/* <BrowserRouter> */}
     <App />
     <Toaster/>
-    </BrowserRouter>
+    {/* </BrowserRouter> */}
     </Provider>
   </React.StrictMode>,
 )

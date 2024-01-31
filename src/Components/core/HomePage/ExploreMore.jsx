@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HomePageExplore } from "../../../data/homepage-explore";
 import HighLightText from "./HighLightText";
 import { motion } from "framer-motion";
@@ -18,6 +18,11 @@ const ExploreMore = () => {
   // console.log(courses);
   console.log(activeCard);
 
+  useEffect(() => {
+    // Set initial active tab and courses based on the initial state
+    setMyCards(currentTab);
+  }, []);
+
   const setMyCards = (tab) => {
     setCurrentTab(tab);
     const result = HomePageExplore.filter((course) => course.tag === tab);
@@ -27,7 +32,7 @@ const ExploreMore = () => {
   };
 
   return (
-    <motion.div initial={{y:100}} whileInView={{y:0,transition:{duration:0.3}}}>
+    <motion.div initial={{y:100}} whileInView={{y:0,transition:{duration:0.5}}}>
       <motion.div className="text-4xl text-center font-semibold font-inter">
         Unlock the <HighLightText text={"Power of Code"} />
       </motion.div>
@@ -49,7 +54,9 @@ const ExploreMore = () => {
                 transition: { type: "tween" },
               }}
               className={`text-[16px] px-7 font-inter flex  items-center gap-3 ${
-                activeCard === HomePageExplore[0].tag
+               tab===currentTab?"bg-white text-richblack-800":"bg-richblack-800 text-richblack-200"}
+                
+                ${activeCard== HomePageExplore[0].tag
                   ? "bg-richblack-5 text-richblack-800 font-medium rounded-full cursor-pointer "
                   : "bg-richblack-800 text-richblack-200 font-medium rounded-full"} transition-all duration-200 cursor-pointer hover:bg-richblack-700 hover:text-richblack-5 px-7 py-2"
               `}

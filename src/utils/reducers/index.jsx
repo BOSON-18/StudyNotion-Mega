@@ -1,15 +1,15 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import authSlice from "../slices/authSlice";
-import cartSlice from "../slices/cartSlice";
-import profileSlice from "../slices/profileSlice";
+// import { combineReducers } from "@reduxjs/toolkit";
+// import authSlice from "../slices/authSlice";
+// import cartSlice from "../slices/cartSlice";
+// import profileSlice from "../slices/profileSlice";
 
 
-const rootReducer= combineReducers({
+// const rootReducer= combineReducers({
    
-    auth:authSlice,
-    profile:profileSlice,
-    cart:cartSlice
+//     auth:authSlice,
+//     profile:profileSlice,
+//     cart:cartSlice
     
-})
+// })
 
-export default rootReducer;
+// export default rootReducer;
