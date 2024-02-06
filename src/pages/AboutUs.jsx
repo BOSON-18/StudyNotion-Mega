@@ -8,16 +8,18 @@ import FoundingStory from '../assets/Images/FoundingStory.png'
 import Stats from '../Components/core/HomePage/Stats'
 import LearningGrid from '../Components/core/AboutUs/LearningGrid'
 import ContactFormSection from '../Components/core/AboutUs/ContactFormSection'
+import {motion} from 'framer-motion'
 
-const AboutUs = () => {
+const  AboutUs = () => {
   return (
-    <div className='w-11/12 mx-auto'>
+    <>
+    <motion.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:0.8,delay:0.1}} className='w-11/12 mx-auto'>
         {/* Section 1 */}
-        <section>
-            <div className='text-center mt-12 text-richblack-25'>
-                <header className='text-richblack-25 font-semibold font-inter text-[36px] '>Driving Innovation in Online Education for a <HighLightText text={'Brighter Future'}/>
+        <section> 
+            <motion.div initial={{opacity:0}} whileInView={{opacity:1}} transition={{duration:0.6,delay:0.1}}  className='text-center mx-auto w-10/12 mt-12 text-richblack-25 '>
+                <header className='text-richblack-25 font-semibold font-inter text-[36px] '>Driving Innovation in Online Education for a <br></br><HighLightText text={'Brighter Future'}/>
                 
-                <p className='w-11/12 text-xl font-normal'>Studynotion is at the forefront of driving innovation in online education. We're passionate about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and nurturing a vibrant learning community.</p>
+                <p className='w-9/12 mx-auto text-[16px] font-medium font-inter'>Studynotion is at the forefront of driving innovation in online education. We're passionate about creating a brighter future by offering cutting-edge courses, leveraging emerging technologies, and nurturing a vibrant learning community.</p>
                 </header>
 
                 <div className='flex flex-row mx-auto  my-6 gap-x-4'>
@@ -25,48 +27,51 @@ const AboutUs = () => {
                     <img src={BannerImage2} alt='' />
                     <img src={BannerImage3} alt='' />
                 </div>
-            </div>
+            </motion.div>
         </section>
 
         {/* Section 2 */}
 
         <section>
-            <div className='text-3xl font-inter font-semibold text-richblack-5'>
+            <motion.div initial={{y:100,opacity:0}} whileInView={{y:0,opacity:1}} transition={{duration:0.6,delay:0.1}}  className='w-10/12 mx-auto  text-4xl text-center my-[80px]  font-inter font-semibold text-richblack-5'>
     <Quote/>
-            </div>
+            </motion.div>
         </section>
 
         {/* Section 3 */}
 
         <section>
-            <div className='flex flex-row'>
-                <div className='text-richblack-5'>
-                    <h1 className='text-[36px] font-inter font-semibold'>Our Founding Story </h1>
-                    <p className='text-[16px] font-medium font-inter'>Our e-learning platform was born out of a shared vision and passion for transforming education. It all began with a group of educators, technologists, and lifelong learners who recognized the need for accessible, flexible, and high-quality learning opportunities in a rapidly evolving digital world.</p>
-                    <p className='text-[16px] font-inter font-medium'>As experienced educators ourselves, we witnessed firsthand the limitations and challenges of traditional education systems. We believed that education should not be confined to the walls of a classroom or restricted by geographical boundaries. We envisioned a platform that could bridge these gaps and empower individuals from all walks of life to unlock their full potential.</p>
-                </div>
+            <div className='w-10/12 mx-auto flex flex-row justify-between items-center  '>
+                <motion.div  initial={{x:-100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{duration:0.6,delay:0.1}} className='text-richblack-5 w-[40%] gap-y-10 '>
+                    <h1 className='text-[44px] font-inter font-semibold mb-5'><HighLightText text={"Our Founding Story"}></HighLightText> </h1>
+                    <p className='text-[16px] font-medium font-inter text-richblack-300'>Our e-learning platform was born out of a shared vision and passion for transforming education. It all began with a group of educators, technologists, and lifelong learners who recognized the need for accessible, flexible, and high-quality learning opportunities in a rapidly evolving digital world.</p>
+                    <p className='text-[16px] font-inter font-medium text-richblack-300 mt-5'>As experienced educators ourselves, we witnessed firsthand the limitations and challenges of traditional education systems. We believed that education should not be confined to the walls of a classroom or restricted by geographical boundaries. We envisioned a platform that could bridge these gaps and empower individuals from all walks of life to unlock their full potential.</p>
+                </motion.div>
+<motion.div initial={{x:100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{duration:0.6,delay:0.1}} className='w-[40%] py-[90px] '>
+                <img src={FoundingStory} />
 
-                <img src={FoundingStory}/>
+                </motion.div>
             </div>
 
-            <div className='flex flex-row text-richblack-5'>
-                <div>
-                    <h1 className='text-[36px] font-inter font-semibold'>Our Vision</h1>
-                    <p className='text-[16px] font-medium font-inter'>With this vision in mind, we set out on a journey to create an e-learning platform that would revolutionize the way people learn. Our team of dedicated experts worked tirelessly to develop a robust and intuitive platform that combines cutting-edge technology with engaging content, fostering a dynamic and interactive learning experience.</p>
-                </div>
-                <div>
-                    <h1 className='text-[36px] font-inter font-semibold'>Our Mission</h1>
-                    <p className='text-[16px] font-medium font-inter'>our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners, where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in an environment of sharing and dialogue, and we foster this spirit of collaboration through forums, live sessions, and networking opportunities.</p>
-                </div>
+            <div className='w-10/12 mx-auto flex flex-row justify-between items-center text-richblack-5'>
+                <motion.div  initial={{x:-100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{duration:0.6,delay:0.1}} className='w-[40%]'>
+                    <h1 className='text-[36px] font-inter font-semibold mb-5'><HighLightText text={"Our Vision"}></HighLightText></h1>
+                    <p className='text-[16px] font-thin text-richblack-300 font-inter'>With this vision in mind, we set out on a journey to create an e-learning platform that would revolutionize the way people learn. Our team of dedicated experts worked tirelessly to develop a robust and intuitive platform that combines cutting-edge technology with engaging content, fostering a dynamic and interactive learning experience.</p>
+                </motion.div>
+                <motion.div initial={{x:100,opacity:0}} whileInView={{x:0,opacity:1}} transition={{duration:0.6,delay:0.1}} className='w-[40%] my-5'>
+                    <h1 className='text-[36px] font-inter font-semibold mb-5'><HighLightText text={"Our Mission"}></HighLightText></h1>
+                    <p className='text-[16px] font-thin text-richblack-300 font-inter'>our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners, where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in an environment of sharing and dialogue, and we foster this spirit of collaboration through forums, live sessions, and networking opportunities.</p>
+                </motion.div>
             </div>
         </section>
+        </motion.div>
 
         {/* Section 4 */}
 
         <section>
-            <div>
+            <motion.div initial={{y:100,opacity:0}} whileInView={{y:0,opacity:1}} transition={{duration:0.6,delay:0.1}} className='w-full bg-black'>
                 <Stats/>
-            </div>
+            </motion.div>
         </section>
 
         {/* Section 5 */}
@@ -74,7 +79,7 @@ const AboutUs = () => {
             <LearningGrid/>
             <ContactFormSection/>
         </section>
-    </div>
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import React from "react";
 import HighLightText from '../../core/HomePage/HighLightText'
 import YellowBtn from '../HomePage/YellowBtn'
+import {motion} from 'framer-motion'
 const LearningGrid = () => {
   const LearningGridArray = [
     {
@@ -45,7 +46,7 @@ const LearningGrid = () => {
   ];
 
   return (
-    <div className="grid mx-auto grid-cols-1 lg:grid-cols-4 mb-10 w-11/12 text-richblack-100 " >
+    <motion.div initial={{y:100,opacity:0}} whileInView={{y:0,opacity:1}} transition={{duration:0.6,delay:0.1}}  className="grid mx-auto grid-cols-1 lg:grid-cols-4 my-10 w-10/12 text-richblack-100 " >
       {LearningGridArray.map((card, index) => {
         return (
           <div
@@ -63,7 +64,7 @@ const LearningGrid = () => {
                     <HighLightText text={card.highlightText}/>
 
                     </div>
-                    <p className="font-medium">
+                    <p className="font-regular text-[14px]">
                       {card.description}
                     </p>
 
@@ -72,14 +73,14 @@ const LearningGrid = () => {
                       </div>
                   </div>
               ):(<div className="p-10 flex flex-col gap-8 ">
-                <h1 className="text-lg font-bold">{card.heading}</h1>
-                <p>{card.description}</p>
+                <h1 className="text-xl text-[#F1F2FF] font-bold">{card.heading}</h1>
+                <p className="font-regular text-[14px] ">{card.description}</p>
               </div>)
             }
           </div>
         );
       })}
-    </div>
+    </motion.div>
   );
 };
 

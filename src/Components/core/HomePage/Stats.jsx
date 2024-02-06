@@ -10,20 +10,20 @@ const Stats = () => {
 
     ]
   return (
-    <div className='text-richblack-25 flex flex-row'>
+    <div className='text-richblack-25  bg-[#161D29] mt-10'>
 
-        <section>
-            <div className='flex flex-row gap-5 justify-between'>
+        
+            <div className='flex flex-row gap-5 justify-evenly p-[50px] '>
                 {StatsArr.map((data,index)=>{
                     return (
-                        <div key={index} > 
-                            <h1>{data.count}</h1>
-                            <h2>{data.label}</h2>
+                        <div key={index} className='' > 
+                            <h1 className='font-bold font-inter text-[30px]'>{data.count}</h1>
+                            <h2 className='font-thin font-inter text-richblack-300'>{data.label}</h2>
                         </div>
                     )
                 })}
             </div>
-        </section>
+        
 
     </div>
   )
