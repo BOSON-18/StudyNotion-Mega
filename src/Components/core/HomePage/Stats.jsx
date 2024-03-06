@@ -13,7 +13,7 @@ const Stats = () => {
     <div className='text-richblack-25  bg-[#161D29] mt-10'>
 
         
-            <div className='flex flex-row gap-5 justify-evenly p-[50px] '>
+            <div className='flex flex-row gap-5 justify-evenly py-[40px] '>
                 {StatsArr.map((data,index)=>{
                     return (
                         <div key={index} className='' > 

@@ -157,9 +157,12 @@ exports.signUp = async (req, res) => {
       accountType,
       additionalDetails: ProfileDetails._id,
       image: `https://api.dicebear.com/7.x/initials/svg?seed=${firstName}${lastName}`,
+      
+      
     });
 
     console.log(`User image: ${user.image}`);
+    console.log(user.token)
 
     // Return res
     return res.status(200).json({
@@ -222,6 +225,7 @@ exports.login = async (req, res) => {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
       };
+      console.log(user.token)
 
       res.cookie("token", token, options).status(200).json({
         success: true,

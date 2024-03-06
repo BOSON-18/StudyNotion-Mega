@@ -5,44 +5,41 @@ const User = require("../models/User")
 
 //auth
 exports.auth = async (req, res, next) => {
-    try {
+	try {
+		
+		
+        const token = req.cookies.token || req.body.token || (req.header("Authorization") || "").replace("Bearer", "");
 
-        //extract token
-        const token = req.cookies.token || req.body.token || req.header("Authorisation").replace("Bearer", "");
 
-        //if token missing return response
-        if (!token) {
-            return res.status(401).json({
-                success: false,
-                message: "Token missing hai boss"
-            });
-        };
+		
+		if (!token) {
+			return res.status(401).json({ success: false, message: `Token Missing` });
+		}
 
-        //verify token
+		try {
+			
+			const decode = await jwt.verify(token, process.env.JWT_SECRET);
+			console.log(decode);
+			
+			req.user = decode;
+		} catch (error) {
+			
+			return res
+				.status(401)
+				.json({ success: false, message: "token is invalid" });
+		}
 
-        try {
-            const decode = await jwt.verify(token, process.env.JWT_SECRET);
-            console.log(decode);
-
-            req.user = decode;//baaki jagah code me use kr skte ab isse  
-        }
-        catch (error) {
-            return res.status(401).json({
-                success: false,
-                message: "Token invalid hai boss"
-            })
-        }
-        next();
-
-    }
-    catch (error) {
-
-        return res.status(401).json({
-            success: false,
-            message: "Something went wrong while validating the jwt token"
-        });
-    }
-}
+		
+		next();
+	} catch (error) {
+		
+		return res.status(401).json({
+			success: false,
+			message: `Something Went Wrong While Validating the Token`,
+            error:error.message
+		});
+	}
+};
 
 //is Student
 

@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cookieParser());
 //backend frontend ki req entertain kre
 app.use(cors({
-    origin:"http://localhost:3000",//is address se jo bhi request aari hai use entertain krne,
+    origin:"http://localhost:5173",//is address se jo bhi request aari hai use entertain krne,
     credentials:true
 }));
 app.use(fileUpload({

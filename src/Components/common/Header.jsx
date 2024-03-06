@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, matchPath } from "react-router-dom";
+import { Link, matchPath, useNavigate } from "react-router-dom";
 import Logo from "../../assets/Logo/Logo-Full-Light.png";
 import { NavbarLinks } from "../../data/navbar-links";
 import { motion } from "framer-motion";
@@ -13,42 +13,37 @@ import axios from "axios";
 import { apiConnector } from "../../services/apiConnector";
 import { categories } from "../../services/api";
 
-const subLinks=[
-  {title:"python",
-link:"/catalog/python"},
-{
-  title:"web dev",
-  link:"/catalog/web"
-}
-]
+
 const Header = () => {
-  //const location = useLocation();
+  const location = useLocation();
   const { token } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
   const { totalItems } = useSelector((state) => state.cart);
-
+const navigate=useNavigate()
   const [activePage, setActivePage] = useState(NavbarLinks[0]);
-  //const [subLinks, setSubLinks] = useState([]);
+  const [subLinks, setSubLinks] = useState([]);
 
   const matchRoute = (route) => {
     if (route) return matchPath({ path: route }, location.pathname);
     else return null;
   };
-  // const fetchSubLinks = async () => {
-  //   try {
-  //     const result = await apiConnector("GET", categories.CATEGORIES_API);
-  //     console.log("Result:", result);
-  //     setSubLinks(result.data.data);
-  //     console.log("subLinks",subLinks)
-  //   } catch (error) {
-  //     console.log(error);
-  //     console.log("Could Not fetch Category list");
-  //   }
-  // };
+  const fetchSubLinks = async () => {
+    try {
+      const result = await apiConnector("GET", categories.CATEGORIES_API);
+      console.log("Result:", result);
+      
+      setSubLinks(result?.data?.allCategory);
+      console.log("subLinks",subLinks)
+    } catch (error) {
+      console.log(error);
+      console.log("Could Not fetch Category list");
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchSubLinks();
-  // }, []);
+  useEffect(() => {
+    fetchSubLinks();
+    token?`${navigate("/dashboard/my-profile")}`:("null")
+  }, []);
 
   return (
     <motion.div
@@ -72,7 +67,13 @@ const Header = () => {
           <ul className="flex flex-row gap-x-6 text-richblack-25">
             {NavbarLinks.map((item, index) =>
               item?.title === "Catalog" ? (
-                <Catalog />
+                <select className="bg-richblack-900 outline-none" defaultValue="">
+                 Category
+
+                  {subLinks.map((category,index)=>(
+                    <option key={category._id}>{category.name}</option>
+                  ))}
+                </select>
               ) : (
                 <Link to={item?.path}>
                   <motion.li
@@ -131,6 +132,7 @@ const Header = () => {
           {
             //when loggedIn
             token && <ProfileDropDown />
+             
           }
         </div>
       </motion.div>
