@@ -17,9 +17,9 @@ import Cart from "./Components/dashboard/Cart";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import { useSelector } from "react-redux";
 import AddCourse from "./Components/dashboard/AddCourse";
+import ContactUsForm from "./Components/common/ContactUsForm";
 const App = () => {
-
-  const{user}=useSelector((state)=>state.profile)
+  const { user } = useSelector((state) => state.profile);
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter text-richblack-50">
       <BrowserRouter>
@@ -30,6 +30,7 @@ const App = () => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/forgot-Password" element={<ForgotPassword />}></Route>
+          <Route path='/contact' element={<ContactUsForm/>}></Route>
           <Route
             path="/update-Password/:id"
             element={<UpdatePassword />}
@@ -57,10 +58,12 @@ const App = () => {
               </>
             )}
 
-{user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+            {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
               <>
-                <Route path="dashboard/add-course" element={<AddCourse />}></Route>
-               
+                <Route
+                  path="dashboard/add-course"
+                  element={<AddCourse />}
+                ></Route>
               </>
             )}
           </Route>

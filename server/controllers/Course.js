@@ -16,10 +16,10 @@ exports.createCourse = async (req, res) => {
         const { courseName, courseDescription, whatYouWillLearn, price, category } = req.body;
 
         //get thumbnail
-        const thumbnail = req.files.thumbnailImage;
+       // const thumbnail = req.files.thumbnailImage;
 
         //validation
-        if (!courseName || !courseDescription || !whatYouWillLearn || !price || !thumbnail) {
+        if (!courseName || !courseDescription || !whatYouWillLearn || !price ) {
 
             return res.status(400).json({
                 success: false,
@@ -59,7 +59,7 @@ exports.createCourse = async (req, res) => {
 
         //upload image to cloudinary
 
-        const thumbnailImage = await uploadToCloudinary(thumbnail, process.env.FOLDER_NAME);
+       // const thumbnailImage = await uploadToCloudinary(thumbnail, process.env.FOLDER_NAME);
 
         //create an entry for nerw course
 
@@ -70,8 +70,8 @@ exports.createCourse = async (req, res) => {
             whatYouWillLearn: whatYouWillLearn,
             price,
 			
-            tag: tagDetails._id,
-            thumbnail: thumbnailImage.secure_url,
+            //tag: tagDetails._id,
+            //thumbnail: thumbnailImage.secure_url,
         }) 
 
 
@@ -98,7 +98,7 @@ exports.createCourse = async (req, res) => {
 
         return res.status(200).json({
             success: true,
-            message: "Course ceratefd successfully",
+            message: "Course created successfully",
             data: newCourse,
         })
 
@@ -109,7 +109,7 @@ exports.createCourse = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: "Failed to create course",
-            error: message.error
+            error:error.message
         })
     }
 }

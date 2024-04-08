@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mailSender = require("../utils/mailSender");
 const Profile = require("../models/Profile");
-require("dotenv").config;
+require("dotenv").config();
 
 // Send OTP
 exports.sendOTP = async (req, res) => {
@@ -216,6 +216,7 @@ exports.login = async (req, res) => {
       const token = jwt.sign(payload, process.env.JWT_SECRET, {
         expiresIn: "2h",
       });
+      console.log("Login token",token)
 
       user.token = token; //abhi bhi to object nhi likhenge
       user.password = undefined;
@@ -225,13 +226,13 @@ exports.login = async (req, res) => {
         expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
         httpOnly: true,
       };
-      console.log(user.token)
+      console.log("User TOken",user.token)
 
       res.cookie("token", token, options).status(200).json({
         success: true,
         token,
         user,
-        message: "Loged in successfully",
+        message: "Logged in successfully",
       });
     } else {
       return res.status(401).json({

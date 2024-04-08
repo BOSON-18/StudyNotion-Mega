@@ -30,7 +30,8 @@ const LoginForm = () => {
   
     const handleOnSubmit = (e) => {
       e.preventDefault()
-      dispatch(login(email, password, navigate))
+     const result= dispatch(login(email, password, navigate))
+     console.log(result?.data?.token)
     }
   return (
     <form

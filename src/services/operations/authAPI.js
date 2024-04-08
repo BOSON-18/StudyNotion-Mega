@@ -1,14 +1,10 @@
 import { toast } from "react-hot-toast"
 
 import { setLoading, setToken } from "../../utils/slices/authSlice"
-//import { resetCart } from "../../utils/slices/cartSlice"
+// import { resetCart } from "../../slices/cartSlice"
 import { setUser } from "../../utils/slices/profileSlice"
-import { apiConnector } from"../apiConnector"
+import { apiConnector } from "../apiconnector"
 import { endpoints } from "../api"
-import { useSelector } from "react-redux"
-
-
-
 
 const {
   SENDOTP_API,
@@ -108,11 +104,8 @@ export function login(email, password, navigate) {
       const userImage = response.data?.user?.image
         ? response.data.user.image
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.user.firstName} ${response.data.user.lastName}`
-        console.log("Dispatching set user")
       dispatch(setUser({ ...response.data.user, image: userImage }))
       localStorage.setItem("token", JSON.stringify(response.data.token))
-      localStorage.setItem("user", JSON.stringify(response.data.user))
-
       navigate("/dashboard/my-profile")
     } catch (error) {
       console.log("LOGIN API ERROR............", error)
@@ -123,18 +116,13 @@ export function login(email, password, navigate) {
   }
 }
 
-export function getPasswordResetToken(email,token, setEmailSent) {
-// const {token}=useSelector((store)=>store.auth)
-
+export function getPasswordResetToken(email, setEmailSent) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
     try {
-      
       const response = await apiConnector("POST", RESETPASSTOKEN_API, {
-        email
-      },{
-        Authorization:token
+        email,
       })
 
       console.log("RESETPASSTOKEN RESPONSE............", response)
@@ -154,7 +142,7 @@ export function getPasswordResetToken(email,token, setEmailSent) {
   }
 }
 
-export function resetPassword(password, confirmPassword, token) {
+export function resetPassword(password, confirmPassword, token, navigate) {
   return async (dispatch) => {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
@@ -172,7 +160,7 @@ export function resetPassword(password, confirmPassword, token) {
       }
 
       toast.success("Password Reset Successfully")
-     //  navigate("/login")
+      navigate("/login")
     } catch (error) {
       console.log("RESETPASSWORD ERROR............", error)
       toast.error("Failed To Reset Password")
