@@ -9,6 +9,8 @@ import RequirementField from "./RequirementField";
 import IconBtn from "../../../common/IconBtn";
 import {COURSE_STATUS} from "../../../../utils/constants"
 import { setStep,setCourse } from "../../../../utils/slices/courseSlice";
+import { MdNavigateNext } from "react-icons/md"
+
 const CourseInformationForm = () => {
   const {
     register,
