@@ -138,7 +138,7 @@ console.log("Before creating Data")
 console.log("token",token)
    const result=await addCourseDetails(formData,token);
    if(result){
-    setStep(2);
+   dispatch(setStep(2));
     dispatch(setCourse(result));
    }
    setLoading(false);
