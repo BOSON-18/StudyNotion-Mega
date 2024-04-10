@@ -6,7 +6,7 @@ import { MdAddCircleOutline } from "react-icons/md";
 import {BiRightArrow} from "react-icons/bi"
 import { setCourse, setEditCourse, setStep } from "../../../../utils/slices/courseSlice";
 import { createSection, updateSection } from "../../../../services/operations/courseDetailsAPI";
-
+import NestedView from "./NestedView"
 export const CourseBuilderForm = () => {
   const {
     register,
@@ -15,8 +15,9 @@ export const CourseBuilderForm = () => {
     getValues,
     formState: { errors },
   } = useForm();
-  const [editSectionName, setEditSectionName] = useState(true);
+  const [editSectionName, setEditSectionName] = useState(null);
   const {course}= useSelector((state)=>state.course)
+  console.log("Consoling coure ",course)
   const[loading,setLoading]=useState(false);
   const{token}=useSelector((state)=>(state.auth))
   const dispatch= useDispatch()
@@ -47,16 +48,19 @@ export const CourseBuilderForm = () => {
             courseId:course._id,
         },token)
 
+        console.log(result)
+
     }
 
 
     //update values
 
     if(result){
+      console.log("Printing result",result)
         dispatch(setCourse(result));
         setEditSectionName(null);
         setValue("sectionName","")
-
+console.log("Result",result)
     }
 
 
@@ -90,6 +94,17 @@ export const CourseBuilderForm = () => {
         return ;
     }
    dispatch(setStep(3))
+  }
+
+  const handleChangeEditSectionName=(sectionId,sectionName)=>{
+
+
+    if(editSectionName===sectionId){
+      cancelEdit();
+      return;
+    }
+    setEditSectionName(sectionId)
+    setValue("sectionName",sectionName);
   }
   return (
     <div>
@@ -132,8 +147,9 @@ export const CourseBuilderForm = () => {
 
 
       {
-        course.courseContent.length > 0 && (
-            <NestedView/>
+        course?.courseContent?.length > 0 && (
+            <NestedView  handleChangeEditSectionName={handleChangeEditSectionName} />
+            // <span>Hello</span>
         )
       }
 
