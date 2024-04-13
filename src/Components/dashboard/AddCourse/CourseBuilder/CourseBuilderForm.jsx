@@ -101,7 +101,7 @@ console.log("Result",result)
 
     if(editSectionName===sectionId){
       cancelEdit();
-      return;
+      return ;
     }
     setEditSectionName(sectionId)
     setValue("sectionName",sectionName);
