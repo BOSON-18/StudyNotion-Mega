@@ -238,7 +238,8 @@ console.log("token",token)
 
       {/* Thumbnail */}
       {/* Github Repo me dekho */}
-      <Upload />
+      {/* <Upload /> */}
+      <p>Upload</p>
 
       <div>
         <label>

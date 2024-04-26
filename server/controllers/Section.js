@@ -89,7 +89,8 @@ exports.deleteSection = async (req, res) => {
   try {
     //get id - assuing that we r sending it in params
 
-    const { sectionId, courseId } = req.params;
+    const { sectionId, courseId } = req.body||req.params;
+    console.log("Debugging",courseId,sectionId)
 
     //use findByIdAnd Delete
 

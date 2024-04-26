@@ -11,7 +11,7 @@ const ConfirmationModal = ({ modalData }) => {
 
         <div>
           <IconBtn
-            onClick={modalData?.btn1Handler}
+            onclick={modalData?.btn1Handler}
             text={modalData?.btn1Text}
           />
 

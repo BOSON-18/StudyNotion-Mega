@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import {useSelector,useDispatch} from "react-redux"
 import IconBtn from "../../../common/IconBtn";
@@ -17,10 +17,14 @@ export const CourseBuilderForm = () => {
   } = useForm();
   const [editSectionName, setEditSectionName] = useState(null);
   const {course}= useSelector((state)=>state.course)
-  console.log("Consoling coure ",course)
+  console.log("Consoling course ",course)
   const[loading,setLoading]=useState(false);
   const{token}=useSelector((state)=>(state.auth))
-  const dispatch= useDispatch()
+  const dispatch= useDispatch();
+
+  useEffect(()=>{
+    console.log("Updating course");
+  },[course])
 
   const onSubmit=async (data)=>{
 
@@ -149,7 +153,7 @@ console.log("Result",result)
       {
         course?.courseContent?.length > 0 && (
             <NestedView  handleChangeEditSectionName={handleChangeEditSectionName} />
-            // <span>Hello</span>
+            
         )
       }
 
