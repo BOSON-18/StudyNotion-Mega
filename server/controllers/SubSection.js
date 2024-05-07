@@ -10,14 +10,14 @@ exports.createSubSection = async (req, res) => {
   try {
     //fetch data
 
-    const { sectionId, title, timeDuration, description } = req.body;
+    const { sectionId, title,  description } = req.body;
 
     //extract video
-    const video = req.files.videoFile; //uploading to cludinary sent as file so have to extract it like this
+    const video = req.files.video; //uploading to cludinary sent as file so have to extract it like this
 
     //validation
 
-    if (!sectionId || !timeDuration || !title || !description) {
+    if (!sectionId  || !title ||!video|| !description) {
       return res.status(400).json({
         success: false,
         message: "All Fields are required",
@@ -35,7 +35,7 @@ exports.createSubSection = async (req, res) => {
 
     const SubSectionDetails = await SubSection.create({
       title: title,
-      timeDuration: timeDuration,
+     // timeDuration: timeDuration,
       description: description,
       videoUrl: uploadDetails.secure_url,
     });
@@ -60,7 +60,7 @@ exports.createSubSection = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Sub Section crated successfully",
-      updatedSection,
+     data: updatedSection,
     });
   } catch (error) {
     return res.status(500).json({
@@ -100,6 +100,7 @@ exports.updateSubSection = async (req, res) => {
     }
 
     await subSection.save()
+    //uiupdate na hone ka reason ye nhi tha 
     const updatedSection = await Section.findById(sectionId).populate("subSection")
 
     return res.json({
@@ -128,6 +129,7 @@ exports.deleteSubSection = async (req, res) => {
       return res.status(404).json({ success: false, message: "SubSection not found" })
     }
 
+    // ui update nhi hori thi ike karan
     const updatedSection = await Section.findById(sectionId).populate("subSection")
 
     return res.json({

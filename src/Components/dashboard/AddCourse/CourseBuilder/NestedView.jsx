@@ -25,6 +25,7 @@ useEffect(()=>{
     console.log("Updating result");
     console.log(course);
   },[course]);
+  
   const handleDeleteSection = async (sectionId) => {
     
     console.log("Deleting section",sectionId);
@@ -45,7 +46,10 @@ useEffect(()=>{
 
     if(result){
       //extra kuch kr skte?
-      dispatch(setCourse(result));
+      //ui upgrade hoga ab ye sb krne se updaed waala part
+      const updatedCourseContent=course.courseContent.map((section)=>section._id===sectionId?result:section)
+      const updatedCourse={...course,courseContent:updatedCourseContent}
+      dispatch(setCourse(updatedCourse));
 
     }
     setConfirmationModal(null);
@@ -103,7 +107,7 @@ useEffect(()=>{
                   >
                     <div className="flex items-center gap-x-3">
                       <RxDropdownMenu />
-                      <p>{data.subSectionName}</p>
+                      <p className="">{data.title}</p>
                     </div>
 
                     <div className="flex items-center gap-x-3">
