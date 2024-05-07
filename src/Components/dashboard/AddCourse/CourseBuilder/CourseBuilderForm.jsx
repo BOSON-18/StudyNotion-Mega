@@ -97,6 +97,7 @@ console.log("Result",result)
         toast.error("Please add atleast one lecture in each section");
         return ;
     }
+    console.log("Setting step 3")
    dispatch(setStep(3))
   }
 
@@ -160,7 +161,7 @@ console.log("Result",result)
       <div className="flex justify-end gap-x-3">
 
         <button onClick={goBack} className="rounded-md cursor-pointer flex items-center ">Back</button>
-        <IconBtn text="Next" onClick={goToNext}><BiRightArrow/></IconBtn>
+        <IconBtn text="Next" onclick={goToNext}><BiRightArrow/></IconBtn>
 
       </div>
     </div>

@@ -125,7 +125,7 @@ const CourseInformationForm = () => {
     formData.append("courseName",data.courseTitle);
     formData.append("courseDescription",data.courseShortDescription)
     formData.append("price",data.coursePrice)
-   // formData.append("courseTags",JSON.stringify(data.courseTags))
+    formData.append("tag",JSON.stringify(data.courseTags))
     formData.append("whatYouWillLearn",data.courseBenefits)
     formData.append("category",data.courseCategory)
     formData.append("instructions",JSON.stringify(data.courseRequirements))

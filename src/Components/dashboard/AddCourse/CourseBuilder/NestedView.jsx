@@ -97,8 +97,7 @@ useEffect(()=>{
               </summary>
 
               <div>
-                {section.subSection.map((data) => (
-                  <div
+                {section.subSection.map((data) => ( <div
                     key={data?._id}
                     onClick={() => {
                       setViewSubSection(data);
@@ -110,7 +109,7 @@ useEffect(()=>{
                       <p className="">{data.title}</p>
                     </div>
 
-                    <div className="flex items-center gap-x-3">
+                    <div className="flex items-center gap-x-3" onClick={(e)=>e.stopPropagation()}>
                       <button
                         onClick={() =>
                           setEditSubSection({ ...data, sectionId: section._id })

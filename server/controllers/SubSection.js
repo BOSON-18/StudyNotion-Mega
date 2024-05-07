@@ -78,10 +78,12 @@ exports.createSubSection = async (req, res) => {
 exports.updateSubSection = async (req, res) => {
   try {
     const { sectionId,subSectionId, title, description } = req.body
+    console.log("finding subsection")
     const subSection = await SubSection.findById(subSectionId)
+    console.log("Found Subsction")
 
     if(!subSection){
-      return res.status(404).json({success: false,  message: "SubSection not found", })
+      return res.status(404).json({success: false,  message: "SubSection not found" })
     }
 
     if(title !== undefined){
@@ -101,7 +103,10 @@ exports.updateSubSection = async (req, res) => {
 
     await subSection.save()
     //uiupdate na hone ka reason ye nhi tha 
+    console.log("updating Section")
+    console.log(sectionId)
     const updatedSection = await Section.findById(sectionId).populate("subSection")
+    console.log("section updated")
 
     return res.json({
       success: true,
@@ -113,6 +118,7 @@ exports.updateSubSection = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "An error occurred while updating the section",
+      error:error.message
     })
   }
 }

@@ -56,7 +56,7 @@ export default function SubSectionModal({
     const currentValues = getValues();
     const formData = new FormData();
 
-    formData.append("sectionId", modalData);
+    formData.append("sectionId", modalData.sectionId);
     formData.append("subSectionId", modalData._id);
 
     if (currentValues.lectureTitle !== modalData.title) {
@@ -74,12 +74,12 @@ export default function SubSectionModal({
     setLoading(true);
 
     // API CALL
-
+console.log("updating subsection")
     const result = await updateSubSection(formData, token);
-
+console.log(result)
     if (result) {
       // ToDo : extra kya add kr skte
-      const updatedCourseContent=course.courseContent.map((section)=>section._id===modalData?result:section)
+      const updatedCourseContent=course.courseContent.map((section)=>section._id===modalData.sectionId?result:section)
       const updatedCourse={...course,courseContent:updatedCourseContent}
       //krdiya
       dispatch(setCourse(updatedCourse));
