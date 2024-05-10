@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast"
 import { setLoading, setToken } from "../../utils/slices/authSlice"
 // import { resetCart } from "../../slices/cartSlice"
 import { setUser } from "../../utils/slices/profileSlice"
-import { apiConnector } from "../apiconnector"
+import { apiConnector } from "../apiConnector.js"
 import { endpoints } from "../api"
 
 
@@ -21,10 +21,12 @@ export function sendOtp(email, navigate) {
     const toastId = toast.loading("Loading...")
     dispatch(setLoading(true))
     try {
+      console.log("Before sending request")
       const response = await apiConnector("POST", SENDOTP_API, {
         email,
         checkUserPresent: true,
       })
+      console.log("After sedning req")
       console.log("SENDOTP API RESPONSE............", response)
 
       console.log(response.data.success)

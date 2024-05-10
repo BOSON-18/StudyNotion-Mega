@@ -7,7 +7,7 @@ import {
   createSubSection,
 } from "../../../../services/operations/courseDetailsAPI";
 import { RxCross2 } from "react-icons/rx";
-import Upload from "../../AddCourse/CourseInformation/Upload"
+import Upload from "../CourseInformation/Upload"
 import IconBtn from "../../../common/IconBtn"
 
 

@@ -54,7 +54,7 @@ exports.sendOTP = async (req, res) => {
     console.log(otpBody);
 
     // Return response successfully
-    res.status(200).json({
+   return  res.status(200).json({
       success: true,
       message: "OTP sent successfully",
       otp: otpPayload.otp,
@@ -64,6 +64,7 @@ exports.sendOTP = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Failure in sending OTP",
+      error:error.message
     });
   }
 };
@@ -213,7 +214,7 @@ exports.login = async (req, res) => {
         id: user.id,
         accountType: user.accountType,
       };
-      const token = jwt.sign(payload, process.env.JWT_SECRET, {
+      const token = jwt.sign(payload,"clumsy", {
         expiresIn: "2h",
       });
       console.log("Login token",token)
@@ -246,6 +247,7 @@ exports.login = async (req, res) => {
     return res.status(400).json({
       success: false,
       message: "Login Failure Please try again",
+      error:error.message
     });
   }
 };

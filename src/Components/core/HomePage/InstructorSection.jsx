@@ -1,6 +1,6 @@
 import React from 'react'
 import InstructorImg from "../../../assets/Images/Instructor.png"
-import HighLightText from "../HomePage/HighLightText";
+import HighLightText from "./HighLightText";
 import YellowBtn from './YellowBtn';
 
 const InstructorSection = () => {

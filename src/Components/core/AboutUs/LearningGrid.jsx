@@ -1,5 +1,5 @@
 import React from "react";
-import HighLightText from '../../core/HomePage/HighLightText'
+import HighLightText from '../HomePage/HighLightText'
 import YellowBtn from '../HomePage/YellowBtn'
 import {motion} from 'framer-motion'
 const LearningGrid = () => {

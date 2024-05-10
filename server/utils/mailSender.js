@@ -7,10 +7,12 @@ const mailSender = async (email, title, body) => {
             let transporter = nodemailer.createTransport({
                 host:process.env.MAIL_HOST,
                 auth:{
+                    type: "OAuth2",
                     user: process.env.MAIL_USER,
                     pass: process.env.MAIL_PASSWORD,
                 }
             })
+            console.log("Creating info")
 
 
             let info = await transporter.sendMail({
