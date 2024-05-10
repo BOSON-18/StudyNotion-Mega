@@ -23,6 +23,7 @@ import ConfirmationModal from "../../common/ConfirmationModal"
 
 const CoursesTable = ({ courses, setCourses }) => {
   const dispatch = useDispatch();
+  const navigate=useNavigate()
   const { token } = useSelector((state) => state.auth);
   const{loading} = useSelector((state)=>state.auth)
   const [confirmationModal, setConfirmationModal] = useState(null);
@@ -89,6 +90,9 @@ const CoursesTable = ({ courses, setCourses }) => {
                   <button
                     className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none"
                     disabled={loading}
+                    onClick={() => {
+                      navigate(`/dashboard/edit-course/${course._id}`)
+                    }}
                   >
                    {FiEdit2} EDIT
                   </button>
