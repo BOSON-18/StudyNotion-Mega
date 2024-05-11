@@ -49,7 +49,8 @@ exports.createCourse = async (req, res) => {
 
     //check given Category valid or not
 
-    const categoryDetails = await Category.findById(category); //coz in course model we have iut by ref =>> objectId
+    const categoryDetails = await Category.findById(category);
+    console.log(categoryDetails) //coz in course model we have iut by ref =>> objectId
 
     if (!categoryDetails) {
       return res.status(404).json({
@@ -85,19 +86,19 @@ exports.createCourse = async (req, res) => {
       { _id: instructorDetails._id },
       {
         $push: {
-          courses: newCourse._id,
+          course: newCourse._id,
         },
       },
       { new: true }
     );
 
     //update Category ka schema HW
-
+//id ka updation
     const categoryDetails2= await Category.findByIdAndUpdate(
-      {_id:category},
+      {_id:categoryDetails._id},
       {
         $push:{
-          courses:newCourse._id,
+          course:newCourse._id,
         },
       },
       {new:true}

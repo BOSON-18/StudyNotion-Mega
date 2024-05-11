@@ -33,6 +33,7 @@ const CourseInformationForm = () => {
     const getCategories = async () => {
       setLoading(true);
       const categories = await fetchCourseCategories();
+      console.log(categories)
       if (categories.length > 0) setCourseCategories(categories);
       setLoading(false);
     };

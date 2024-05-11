@@ -74,7 +74,7 @@ export const fetchCourseCategories = async () => {
     if (!response?.data?.success) {
       throw new Error("Could Not Fetch Course Categories")
     }
-    result = response?.data?.allCategory
+    result = response?.data?.data
   } catch (error) {
     console.log("COURSE_CATEGORY_API API ERROR............", error)
     toast.error(error.message)
@@ -156,6 +156,7 @@ export const createSubSection = async (data, token) => {
   let result = null
  
   const toastId = toast.loading("Loading...")
+  console.log("Uploading")
   try {
     const response = await apiConnector("POST", CREATE_SUBSECTION_API, data, {
       Authorization: `Bearer ${token}`,
@@ -168,6 +169,7 @@ export const createSubSection = async (data, token) => {
     result = response?.data?.data
   } catch (error) {
     console.log("CREATE SUB-SECTION API ERROR............", error)
+    console.log(error.message)
     toast.error(error.message)
   }
   toast.dismiss(toastId)

@@ -44,13 +44,14 @@ exports.showAllCategories = async (req, res) => {
   try {
     const allCategory = await Category.find(
       {},
-      { name: true, description: true }
+      { name: true, description: true,course:true }
     ); //koi searching criteia nhi but make sure it contains name and description
+    console.log(allCategory)
 
     return res.json({
       success: true,
       message: "All Category returned successfully",
-      allCategory,
+     data: allCategory,
     });
   } catch (error) {
     return res.status(500).json({
