@@ -70,7 +70,7 @@ exports.categoryPageDetails = async (req, res) => {
     //fetch all courses of the category
     const selectedCategory = await Category.findById(categoryId)
       .populate({
-        path: "courses",
+        path: "course",
         match: { status: "Published" },
         // populate:"ratingAndReviews"
       })
@@ -84,7 +84,7 @@ exports.categoryPageDetails = async (req, res) => {
       });
     }
 
-    if (selectedCategory.courses.length === 0) {
+    if (selectedCategory.course.length === 0) {
       console.log("No COurses found for this cattegory");
 
       return res.status(404).json({
@@ -102,7 +102,7 @@ exports.categoryPageDetails = async (req, res) => {
         ._id
     )
       .populate({
-        path: "courses",
+        path: "course",
         match: { status: "Published" },
       })
       .exec();
@@ -113,7 +113,7 @@ exports.categoryPageDetails = async (req, res) => {
 
     const allCategories = await Category.find()
       .populate({
-        path: "courses",
+        path: "course",
         match: { status: "Published" },
         populate: {
           path: "instructor",
@@ -122,7 +122,7 @@ exports.categoryPageDetails = async (req, res) => {
       .exec();
 
     //return response
-    const allCourses = allCategories.flatMap((category) => category.courses)
+    const allCourses = allCategories.flatMap((category) => category.course)
       const mostSellingCourses = allCourses
         .sort((a, b) => b.sold - a.sold)
         .slice(0, 10)

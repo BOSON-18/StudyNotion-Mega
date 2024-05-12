@@ -16,12 +16,12 @@ exports.createCourse = async (req, res) => {
       req.body;
 
     //get thumbnail
-    // const thumbnail = req.files.thumbnailImage;
+     const thumbnail = req.files.courseThumbnail;
 
     const tag= JSON.parse(_tag);
     const instructions=JSON.parse(_instructions);
     //validation
-    if (!courseName || !courseDescription || !whatYouWillLearn || !price ||!tag.length || !category || !instructions.length) {
+    if (!courseName || !courseDescription || !whatYouWillLearn ||!thumbnail|| !price ||!tag.length || !category || !instructions.length) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
@@ -61,7 +61,8 @@ exports.createCourse = async (req, res) => {
 
     //upload image to cloudinary
 
-    // const thumbnailImage = await uploadToCloudinary(thumbnail, process.env.FOLDER_NAME);
+     const thumbnailImage = await uploadToCloudinary(thumbnail, "StudyNotion");
+     console.log(thumbnailImage)
 
     //create an entry for nerw course
 
@@ -75,8 +76,8 @@ exports.createCourse = async (req, res) => {
       tag,
       category:categoryDetails._id,
       status:status,
-      instructions
-      //thumbnail: thumbnailImage.secure_url,
+      instructions,
+      thumbnail: thumbnailImage.secure_url,
     });
 
     // add this course to course list of instructor

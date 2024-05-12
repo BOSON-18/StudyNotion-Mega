@@ -8,12 +8,14 @@ const ForgotPassword = () => {
   const [emailSent, setEmailSent] = useState(false);
   const [email, setEmail] = useState("");
   const dispatch=useDispatch()
+  console.log(token)
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log('Submitting')
     //setEmailSent(!emailSent)
     dispatch(getPasswordResetToken(email,token,setEmailSent))
+    setEmailSent(!emailSent)
   };
   return (
     <div className="text-richblack-25 flex justify-center items-center">

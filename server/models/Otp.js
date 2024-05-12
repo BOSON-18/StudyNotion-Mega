@@ -38,7 +38,7 @@ async function sendVerificationEmail(email, otp) {
 			"Verification Email",//title
 			emailTemplate(otp)//body for nodemailer
 		);
-		console.log("Email sent successfully: ", mailResponse.response);
+		console.log("Email sent successfully: ", mailResponse);
 	} catch (error) {
 		console.log("Error occurred while sending email: ", error);
 		throw error;

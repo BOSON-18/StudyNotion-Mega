@@ -61,10 +61,10 @@ const CourseInformationForm = () => {
       currentValue.courseTitle !== course.courseName ||
       currentValue.courseShortDescription !== course.courseDescription ||
       currentValue.coursePrice !== course.coursePrice ||
-    // currentValue.courseTags.toString()!==course.tag.toString()||
+     currentValue.courseTags.toString()!==course.tag.toString()||
       currentValue.courseBenefits !== course.whatYouWillLearn ||
       currentValue.category._id !== course.category._id ||
-      //currentValue.courseImage !== course.thumbnail ||
+      currentValue.courseImage !== course.thumbnail ||
       currentValue.courseRequirements.toString() !==
         course.instructions.toString()
     )
@@ -105,6 +105,10 @@ const CourseInformationForm = () => {
         formData.append("instructions",JSON.stringify(data.courseRequirements))
       }
 
+      if(currentValues.courseImage !== course.thumbnail){
+        formData.append("thumbnailImage",data.courseImage)
+      }
+
       setLoading(true);
 
       const result=await editCourseDetails(formData,token);
@@ -130,7 +134,7 @@ const CourseInformationForm = () => {
     formData.append("whatYouWillLearn",data.courseBenefits)
     formData.append("category",data.courseCategory)
     formData.append("instructions",JSON.stringify(data.courseRequirements))
-   // formData.append("courseThumbnail",data.courseImage)
+    formData.append("courseThumbnail",data.courseImage)
 
    formData.append("status",COURSE_STATUS.DRAFT);
 
@@ -240,7 +244,14 @@ console.log("token",token)
       {/* Thumbnail */}
       {/* Github Repo me dekho */}
       {/* <Upload /> */}
-      <p>Upload</p>
+      <Upload
+        name="courseImage"
+        label="Course Thumbnail"
+        register={register}
+        setValue={setValue}
+        errors={errors}
+        editData={editCourse ? course?.thumbnail : null}
+      />
 
       <div>
         <label>

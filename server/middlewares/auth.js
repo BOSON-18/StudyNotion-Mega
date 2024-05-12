@@ -12,7 +12,7 @@ exports.auth = async (req, res, next) => {
 		const token =
 			req.cookies.token ||
 			req.body.token ||
-			req.header("Authorization").replace("Bearer ", "");
+			req.header("Authorization").replace("Bearer", "")||null;
 
 		
 		if (!token) {
@@ -20,8 +20,8 @@ exports.auth = async (req, res, next) => {
 		}
 
 		try {
-			
-			const decode = await jwt.verify(token, "clumsy");
+			console.log("Decoding token")
+			const decode =  jwt.verify(token, "clumsy");
 			console.log(decode);
 			
 			req.user = decode;
@@ -39,6 +39,7 @@ exports.auth = async (req, res, next) => {
 		return res.status(401).json({
 			success: false,
 			message: `Something Went Wrong While Validating the Token`,
+			error:error.message
 		});
 	}
 };

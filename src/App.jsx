@@ -20,6 +20,8 @@ import AddCourse from "./Components/dashboard/AddCourse";
 import ContactUsForm from "./Components/common/ContactUsForm";
 import MyCourses from "./Components/dashboard/MyCourses/MyCourses";
 import EditCourse from "./Components/dashboard/EditCourse";
+import Catalog from "./pages/Catalog";
+import Footer from "./Components/common/Footer";
 const App = () => {
   const { user } = useSelector((state) => state.profile);
   return (
@@ -29,6 +31,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
+          <Route path="/catalog/:catalogName" element={<Catalog/>}/>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/forgot-Password" element={<ForgotPassword />}></Route>
@@ -78,6 +81,7 @@ const App = () => {
             )}
           </Route>
         </Routes>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

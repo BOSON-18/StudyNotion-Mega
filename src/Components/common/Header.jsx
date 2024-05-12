@@ -4,7 +4,7 @@ import Logo from "../../assets/Logo/Logo-Full-Light.png";
 import { NavbarLinks } from "../../data/navbar-links";
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
-import Catalog from "../core/Header/Catalog";
+
 import { useSelector } from "react-redux";
 import { IoMdCart } from "react-icons/io";
 import ProfileDropDown from "../core/auth/ProfileDropDown";

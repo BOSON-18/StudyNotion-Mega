@@ -25,7 +25,7 @@ exports.resetPasswordToken = async (req, res) => {
         }
         //generate token
 
-        const token = crypto.randomUUID();
+        const token =  crypto.randomBytes(20).toString("hex");
         //update user by adding token and expiration time
         const updatedDetails = await User.findOneAndUpdate({ email: email },
             {
@@ -33,6 +33,8 @@ exports.resetPasswordToken = async (req, res) => {
                 resetPasswordExpires: Date.now() + 5 * 60 * 1000
             },
             { new: true });
+
+            console.log("Updated Details0",updatedDetails)
 
 
         //generate link
@@ -55,7 +57,8 @@ exports.resetPasswordToken = async (req, res) => {
         console.log(error);
         return res.status(501).json({
             success: false,
-            message: "Something went wrong"
+            message: "Something went wrong",
+            error:error.message
         })
     }
 }
