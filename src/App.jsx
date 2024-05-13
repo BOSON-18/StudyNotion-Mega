@@ -13,7 +13,7 @@ import MyProfile from "./Components/dashboard/MyProfile";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./Components/core/auth/PrivateRoute";
 import EnrolledCourses from "./Components/dashboard/EnrolledCourses";
-import Cart from "./Components/dashboard/Cart";
+import Cart from "./Components/dashboard/Cart/index";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import { useSelector } from "react-redux";
 import AddCourse from "./Components/dashboard/AddCourse";
@@ -22,6 +22,7 @@ import MyCourses from "./Components/dashboard/MyCourses/MyCourses";
 import EditCourse from "./Components/dashboard/EditCourse";
 import Catalog from "./pages/Catalog";
 import Footer from "./Components/common/Footer";
+import CourseDetails from "./pages/CourseDetails";
 const App = () => {
   const { user } = useSelector((state) => state.profile);
   return (
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
           <Route path="/catalog/:catalogName" element={<Catalog/>}/>
+          <Route path="courses/:courseId" element={<CourseDetails/>} />
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/forgot-Password" element={<ForgotPassword />}></Route>

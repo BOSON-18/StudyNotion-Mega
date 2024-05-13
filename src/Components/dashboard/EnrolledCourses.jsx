@@ -28,7 +28,7 @@ const EnrolledCourses = () => {
 
         {/* Data leke aao  */}
         {!enrolledCourses ? (
-          <div>Loading</div>
+          <div>Loading...</div>
         ) : !enrolledCourses.length ? (
           <p>You Have not enrolled in any course yet</p>
         ) : (
