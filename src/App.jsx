@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Header from "./Components/common/Header";
 import AboutUs from "./pages/AboutUs";
@@ -15,7 +15,7 @@ import PrivateRoute from "./Components/core/auth/PrivateRoute";
 import EnrolledCourses from "./Components/dashboard/EnrolledCourses";
 import Cart from "./Components/dashboard/Cart/index";
 import { ACCOUNT_TYPE } from "./utils/constants";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AddCourse from "./Components/dashboard/AddCourse";
 import ContactUsForm from "./Components/common/ContactUsForm";
 import MyCourses from "./Components/dashboard/MyCourses/MyCourses";
@@ -23,8 +23,13 @@ import EditCourse from "./Components/dashboard/EditCourse";
 import Catalog from "./pages/Catalog";
 import Footer from "./Components/common/Footer";
 import CourseDetails from "./pages/CourseDetails";
+import { logout } from "./services/operations/authAPI";
+import toast from "react-hot-toast";
+import ViewCourse from "./pages/ViewCourse";
 const App = () => {
   const { user } = useSelector((state) => state.profile);
+  const { token } = useSelector((state) => state.auth);
+
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter text-richblack-50">
       <BrowserRouter>
@@ -32,12 +37,12 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<AboutUs />}></Route>
-          <Route path="/catalog/:catalogName" element={<Catalog/>}/>
-          <Route path="courses/:courseId" element={<CourseDetails/>} />
+          <Route path="/catalog/:catalogName" element={<Catalog />} />
+          <Route path="courses/:courseId" element={<CourseDetails />} />
           <Route path="/login" element={<Login />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/forgot-Password" element={<ForgotPassword />}></Route>
-          <Route path='/contact' element={<ContactUsForm/>}></Route>
+          <Route path="/contact" element={<ContactUsForm />}></Route>
           <Route
             path="/update-Password/:id"
             element={<UpdatePassword />}
@@ -45,15 +50,15 @@ const App = () => {
           <Route path="/verify-email" element={<VerifyEmail />}></Route>
 
           <Route
-            //path='/dashboard/my-profile'
             element={
               <PrivateRoute>
                 <Dashboard />
               </PrivateRoute>
             }
           >
-            <Route path="/dashboard/my-profile" element={<MyProfile />}></Route>
-            <Route path="/dashboard/settings" element={<MyProfile />}></Route>
+            <Route path="dashboard/my-profile" element={<MyProfile />} />
+
+            {/* /<Route path="dashboard/Settings" element={<Settings />} /> */}
 
             {user?.accountType === ACCOUNT_TYPE.STUDENT && (
               <>
@@ -72,18 +77,33 @@ const App = () => {
                   element={<AddCourse />}
                 ></Route>
 
-                <Route 
-                path="dashboard/my-courses"
-                element={<MyCourses/>}
-                />
+                <Route path="dashboard/my-courses" element={<MyCourses />} />
                 <Route
-                path="dashboard/edit-course/:courseId"
-                element={<EditCourse/>}></Route>
+                  path="dashboard/edit-course/:courseId"
+                  element={<EditCourse />}
+                ></Route>
+              </>
+            )}
+          </Route>
+
+          <Route
+            element={
+              <PrivateRoute>
+                <ViewCourse />
+              </PrivateRoute>
+            }
+          >
+            {user?.accountType === ACCOUNT_TYPE.STUDENT && (
+              <>
+                <Route
+                  path="view-course/:courseId/section/:sectionId/sub-section/:subSectionId"
+                  element={<VideoDetails />}
+                />
               </>
             )}
           </Route>
         </Routes>
-        <Footer/>
+        <Footer />
       </BrowserRouter>
     </div>
   );

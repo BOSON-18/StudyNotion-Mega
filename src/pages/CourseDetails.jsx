@@ -105,6 +105,7 @@ function CourseDetails() {
 
   const handleBuyCourse = () => {
     if (token) {
+      console.log("Buying token",token)
       buyCourse(token, [courseId], user, navigate, dispatch)
       return
     }

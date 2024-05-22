@@ -22,14 +22,16 @@ exports.auth = async (req, res, next) => {
 		try {
 			console.log("Decoding token")
 			const decode =  jwt.verify(token, "clumsy");
-			console.log("Deconding Token",decode);
+			console.log("Decoding Token",decode);
 			
 			req.user = decode;
 		} catch (error) {
+
+
 			
 			return res
 				.status(401)
-				.json({ success: false, message: "token is invalid" });
+				.json({ success: false, message: "token is invalid"});
 		}
 
 		
