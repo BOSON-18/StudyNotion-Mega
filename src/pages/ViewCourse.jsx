@@ -7,7 +7,7 @@ import {
   setEntireCourseData,
   setCompletedLectures,
   setTotalNoOfLectures
-} from "../utils/slices/viewCourseSlice.jsx";
+} from "../utils/slices/viewCourseSlice";
 import { getFullDetailsOfCourse } from "../services/operations/courseDetailsAPI"
 import VideoDetailsSideBar from "../Components/core/viewCourse/VideoDetailsSideBar";
 import CourseReviewModal from "../Components/core/viewCourse/CourseReviewModal.jsx"
@@ -20,7 +20,8 @@ const ViewCourse = () => {
   useEffect(() => {
     ;(async () => {
       const courseData = await getFullDetailsOfCourse(courseId, token)
-      // console.log("Course Data here... ", courseData.courseDetails)
+      console.log("Course Data here... ", courseData.courseDetails)
+      console.log(courseData.courseDetails)
       dispatch(setCourseSectionData(courseData.courseDetails.courseContent))
       dispatch(setEntireCourseData(courseData.courseDetails))
       dispatch(setCompletedLectures(courseData.completedVideos))
@@ -35,16 +36,16 @@ const ViewCourse = () => {
 
   return (
     <>
-      <div>
-        <VideoDetailsSideBar setReviewModal={setReviewModal} />
-
-        <div>
+    <div className="relative flex min-h-[calc(100vh-3.5rem)]">
+      <VideoDetailsSideBar setReviewModal={setReviewModal} />
+      <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto">
+        <div className="mx-6">
           <Outlet />
         </div>
-
-        {reviewModal && <CourseReviewModal setReviewModal={setReviewModal} />}
       </div>
-    </>
+    </div>
+    {reviewModal && <CourseReviewModal setReviewModal={setReviewModal} />}
+  </>
   );
 };
 

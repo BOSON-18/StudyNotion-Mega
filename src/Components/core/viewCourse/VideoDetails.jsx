@@ -97,7 +97,7 @@ const location=useLocation()
 
       const nextSubSectionId=courseSectionData[currentSectionIndx].subSection[currentSectionIndx+1]._id;
       //is video pr jana hai 
-      navigate(`/view-course/${courseId}/section/${sectionId}/sub--section/${nextSubSectionId}`)
+      navigate(`/view-course/${courseId}/section/${sectionId}/sub-section/${nextSubSectionId}`)
 
     }else{
       //different section ki fist video
