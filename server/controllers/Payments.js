@@ -12,7 +12,7 @@ const {
   paymentSuccessEmail,
 } = require("../mail/templates/paymentSuccessEmail");
 const crypto = require("crypto");
-const CourseProgress = require("../models/CourseProgress");
+const CourseProgress = require("../models/courseProgress");
 require("dotenv").config();
 
 // //initiate the razorpay order

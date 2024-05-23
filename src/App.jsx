@@ -26,6 +26,7 @@ import CourseDetails from "./pages/CourseDetails";
 import { logout } from "./services/operations/authAPI";
 import toast from "react-hot-toast";
 import ViewCourse from "./pages/ViewCourse";
+import VideoDetails from "./Components/core/viewCourse/VideoDetails";
 const App = () => {
   const { user } = useSelector((state) => state.profile);
   const { token } = useSelector((state) => state.auth);

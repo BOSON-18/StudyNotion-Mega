@@ -5,7 +5,8 @@ const { uploadToCloudinary } = require("../utils/imageUploader");
 const { response } = require("express");
 const SubSection =require("../models/SubSection")
 const Section = require("../models/Section")
-const convertSecondsToDuration = require('../utils/secToDuration')
+const {convertSecondsToDuration} = require('../utils/secToDuration')
+const courseProgress = require("../models/courseProgress")
 
 //createCoursehandler handler function
 
@@ -253,7 +254,7 @@ exports.getCourseDetails = async (req, res) => {
       .populate({
         path: "courseContent",
         populate: {
-          path: "subSection",
+          path: "sectionName",
         },
       })
       .exec();
@@ -375,7 +376,7 @@ exports.getFullCourseDetails = async (req, res) => {
         },
       })
       .populate("category")
-      .populate("ratingAndReviews")
+     // .populate("ratingAndReviews")
       .populate({
         path: "courseContent",
         populate: {
@@ -384,7 +385,7 @@ exports.getFullCourseDetails = async (req, res) => {
       })
       .exec()
 
-    let courseProgressCount = await CourseProgress.findOne({
+    let courseProgressCount = await courseProgress.findOne({
       courseID: courseId,
       userId: userId,
     })

@@ -3,6 +3,7 @@ import { AiOutlineDown } from "react-icons/ai"
 import { HiOutlineVideoCamera } from "react-icons/hi"
 
 function CourseSubSectionAccordion({ subSec }) {
+  console.log(subSec)
   return (
     <div>
       <div className="flex justify-between py-2">
@@ -10,7 +11,7 @@ function CourseSubSectionAccordion({ subSec }) {
           <span>
             <HiOutlineVideoCamera />
           </span>
-          <p>{subSec?.title}</p>
+          <p className="text-white">{subSec}</p>
         </div>
       </div>
     </div>

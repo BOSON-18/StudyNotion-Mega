@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Outlet,useParams } from "react-router-dom";
 import {
-  getFullDetailsOfCourse,
+  
   setEntireCourseData,
   setCompletedLectures,
-} from "../services/operations/courseDetailsAPI";
+} from "../utils/slices/viewCourseSlice.jsx";
+import { getFullDetailsOfCourse } from "../services/operations/courseDetailsAPI"
+import VideoDetailsSideBar from "../Components/core/viewCourse/VideoDetailsSideBar";
+import CourseReviewModal from "../Components/core/viewCourse/CourseReviewModal.jsx"
 
 const ViewCourse = () => {
   const [reviewModal, setReviewModal] = useState();
@@ -17,8 +20,9 @@ const ViewCourse = () => {
   useEffect(() => {
     const setCourseSpecificDetails = async () => {
       const courseData = await getFullDetailsOfCourse(courseId, token);
+      console.log(courseData);
       dispatch(
-        setCourseSpecificDetails(courseData.courseDetails.courseContent)
+        setCourseSpecificDetails(courseData.courseDetails?.courseContent)
       );
       dispatch(setEntireCourseData(courseData.courseDetails));
       dispatch(setCompletedLectures(courseData.completedVideos));

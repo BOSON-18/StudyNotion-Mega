@@ -13,6 +13,7 @@ const navigate= useNavigate()
     try {
       const response = await getUserEnrolledCourses(token);
       setEnrolledCourses(response);
+      console.log(response)
     } catch (error) {
       console.log(error.message);
       console.log("Unable to Fetch Enrolled Course");
@@ -42,6 +43,7 @@ const navigate= useNavigate()
             </div>
             {/* Course Names */}
             {enrolledCourses.map((course, i, arr) => (
+            
               <div
                 className={`flex items-center border border-richblack-700  ${
                   i === arr.length - 1 ? "rounded-b-lg" : "rounded-none"
@@ -52,7 +54,7 @@ const navigate= useNavigate()
                   className="flex w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
                   onClick={() => {
                     navigate(
-                      `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
+                      `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent[0]?.subSection?.[0]?._id}`
                     )
                   }}
                 >
