@@ -12,13 +12,13 @@ const VideoDetailsSideBar = ({ setReviewModal }) => {
   const {
     courseSectionData,
     courseEntireData,
-    totalNoOfLeftures,
+    totalNoOfLectures,
     completedLectures,
   } = useSelector((state) => state.course);
 
   useEffect(() => {
-    (() => {
-      if (!courseSectionData.length) {
+    ;(() => {
+      if (!courseSectionData?.length) {
         return;
       }
 
