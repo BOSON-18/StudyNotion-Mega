@@ -20,6 +20,8 @@ const location=useLocation()
   const [previewSource, setPreviewSource] = useState("")
   const[loading,setLoading]=useState(false);
 
+  console.log("COurse entire data",courseEntireData)
+
   useEffect(()=>{
     const setVideoSpecificDetails=async()=>{
       if(!courseSectionData.length)
@@ -143,12 +145,14 @@ const location=useLocation()
 
   const handleLectureCompletion=async()=>{
     
-    setLoading(true)
+    setLoading(true);
+
     const res = await markLectureAsComplete(
-      { courseId: courseId, subsectionId: subSectionId },
+      { courseID: courseId, subsectionId: subSectionId },
       token
     )
     if (res) {
+      console.log("Marking as completed")
       dispatch(updateCompletedLectures(subSectionId))
     }
     setLoading(false)

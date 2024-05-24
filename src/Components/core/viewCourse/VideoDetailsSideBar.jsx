@@ -113,7 +113,7 @@ const VideoDetailsSideBar = ({setReviewModa }) => {
                     key={i}
                     onClick={() => {
                       navigate(
-                        `/view-course/${courseEntireData?._id}/section/${course?._id}/sub-section/${topic?._id}`
+                        `/view-course/${courseEntireData?.courseDetails?._id}/section/${course?._id}/sub-section/${topic?._id}`
                       )
                       setVideoBarActive(topic._id)
                     }}

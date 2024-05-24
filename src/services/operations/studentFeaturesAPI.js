@@ -33,7 +33,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
     try{
         //load the script
         
-        console.log(import.meta.env.RAZORPAY_KEY)
+        // console.log(import.meta.env.RAZORPAY_KEY)
         const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");//from docs
 
         if(!res) {
@@ -67,7 +67,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
             },
             handler: function(response) {
                 //send successful wala mail
-                sendPaymentSuccessEmail(response, orderResponse.data.message.amount,token );
+                //sendPaymentSuccessEmail(response, orderResponse.data.message.amount,token );
                 //verifyPayment
                 verifyPayment({...response, courses}, token, navigate, dispatch);
             }
@@ -88,20 +88,20 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
     toast.dismiss(toastId);
 }
 
-async function sendPaymentSuccessEmail(response, amount, token) {
-    try{
-        await apiConnector("POST", SEND_PAYMENT_SUCCESS_EMAIL_API, {
-            orderId: response.razorpay_order_id,
-            paymentId: response.razorpay_payment_id,
-            amount,
-        },{
-            Authorization: `Bearer${token}`
-        })
-    }
-    catch(error) {
-        console.log("PAYMENT SUCCESS EMAIL ERROR....", error);
-    }
-}
+// async function sendPaymentSuccessEmail(response, amount, token) {
+//     try{
+//         await apiConnector("POST", SEND_PAYMENT_SUCCESS_EMAIL_API, {
+//             orderId: response.razorpay_order_id,
+//             paymentId: response.razorpay_payment_id,
+//             amount,
+//         },{
+//             Authorization: `Bearer${token}`
+//         })
+//     }
+//     catch(error) {
+//         console.log("PAYMENT SUCCESS EMAIL ERROR....", error);
+//     }
+// }
 
 //verify payment
 async function verifyPayment(bodyData, token, navigate, dispatch) {
@@ -116,6 +116,7 @@ async function verifyPayment(bodyData, token, navigate, dispatch) {
             throw new Error(response.data.message);
         }
         toast.success("payment Successful, ypou are addded to the course");
+        console.log("Verifying payment ",response)
         navigate("/dashboard/enrolled-courses");
         dispatch(resetCart());
     }   
