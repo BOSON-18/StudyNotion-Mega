@@ -5,7 +5,7 @@ import IconBtn from "../../common/IconBtn";
 import {IoIosArrowBack} from "react-icons/io"
 import {BsChevronDown} from "react-icons/bs"
 
-const VideoDetailsSideBar = ({setReviewModa }) => {
+const VideoDetailsSideBar = ({setReviewModal}) => {
   const [activeStatus, setActiveStatus] = useState("");
   const [videoBarActive, setVideoBarActive] = useState("");
   const navigate = useNavigate();

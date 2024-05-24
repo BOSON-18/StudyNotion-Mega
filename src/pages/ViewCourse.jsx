@@ -13,7 +13,7 @@ import VideoDetailsSideBar from "../Components/core/viewCourse/VideoDetailsSideB
 import CourseReviewModal from "../Components/core/viewCourse/CourseReviewModal.jsx"
 
 const ViewCourse = () => {
-  const [reviewModal, setReviewModal] = useState();
+  const [reviewModal, setReviewModal] = useState(false);
   const { courseId } = useParams();
   const { token } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -33,6 +33,7 @@ const ViewCourse = () => {
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+  console.log(reviewModal)
 
   return (
     <>
@@ -43,8 +44,8 @@ const ViewCourse = () => {
           <Outlet />
         </div>
       </div>
-    </div>
     {reviewModal && <CourseReviewModal setReviewModal={setReviewModal} />}
+    </div>
   </>
   );
 };
