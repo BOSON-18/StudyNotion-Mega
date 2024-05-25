@@ -2,7 +2,7 @@ const Profile = require("../models/Profile");
 const User = require("../models/User");
 const { user } = require("../routes/User");
 const { uploadToCloudinary } = require("../utils/imageUploader");
-const Courses=require("../models/Profile");
+const Courses=require("../models/Course");
 const CourseProgress=require("../models/courseProgress");
 const {convertSecondsToDuration}= require("../utils/secToDuration")
 const mongoose = require("mongoose")
@@ -214,3 +214,34 @@ exports.getEnrolledCourses = async (req, res) => {
     })
   }
 }
+
+exports.instructorDashboard = async(req,res)=>{
+  try{
+
+    const courseDetails=await Courses.find({instructor:req.user.id});
+console.log("Instructor Dashboard",courseDetails)
+    const CourseData= courseDetails.map((course)=>{
+      const totalStudentsEnrolled= course.studentsEnrolled.length;
+      const totalAmountGenerated = totalStudentsEnrolled*course.price
+
+      //create a new object with the additional fields
+
+      const courseDataWithStats={
+        _id:course?._id,
+        courseName:course.courseName,
+        courseDescription:course.courseDescription,
+        totalStudentsEnrolled,
+        totalAmountGenerated
+
+      }
+      return courseDataWithStats
+    })
+    res.status(200).json({courses:CourseData})
+    } catch(error){
+      console.log(error);
+      res.status(500).json({
+        message:"Internal server Error"
+      })
+    }
+  }
+  

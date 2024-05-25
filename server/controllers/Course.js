@@ -179,7 +179,7 @@ exports.editCourse = async (req, res) => {
             path:"subSection"
         }
     }).exec()
-    // .populate("ratingAndReviews")
+     ?.populate("ratingAndReviews")
 
     res.json({
         success:true,
@@ -209,7 +209,7 @@ exports.showAllCourses = async (req, res) => {
         price: true,
         instructor: true,
         thumbnail: true,
-        ratingAndReviews: true,
+        // ratingAndReviews: true,
         studentsEnrolled: true,
       }
     )
@@ -250,7 +250,7 @@ exports.getCourseDetails = async (req, res) => {
         },
       })
       .populate("category")
-      //  .populate("RatingAndReview")
+        ?.populate("ratingAndReviews")
       .populate({
         path: "courseContent",
         populate: {
@@ -376,7 +376,7 @@ exports.getFullCourseDetails = async (req, res) => {
         },
       })
       .populate("category")
-     // .populate("ratingAndReviews")
+      ?.populate("ratingAndReviews")
       .populate({
         path: "courseContent",
         populate: {

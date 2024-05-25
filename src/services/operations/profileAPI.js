@@ -72,7 +72,7 @@ export async function getInstructorData(token) {
   try{
     const response = await apiConnector("GET", GET_INSTRUCTOR_DATA_API, null, 
     {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer${token}`,
     })
 
     console.log("GET_INSTRUCTOR_API_RESPONSE", response);

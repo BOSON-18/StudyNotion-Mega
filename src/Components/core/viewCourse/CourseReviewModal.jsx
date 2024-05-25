@@ -33,7 +33,7 @@ export default function CourseReviewModal({ setReviewModal }) {
   const onSubmit = async (data) => {
     await createRating(
       {
-        courseId: courseEntireData._id,
+        courseId: courseEntireData?.courseDetails?._id,
         rating: data.courseRating,
         review: data.courseExperience,
       },

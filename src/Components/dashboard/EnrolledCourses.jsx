@@ -34,7 +34,7 @@ const navigate= useNavigate()
         ) : !enrolledCourses.length ? (
           <p>You Have not enrolled in any course yet</p>
         ) : (
-          <div className="my-8 text-richblack-5 w-[700px]">
+          <div className="my-8 text-richblack-5 w-full">
             {/* Headings */}
             <div className="flex rounded-t-lg bg-richblack-500 w-full">
               <p className="w-[45%] px-5 py-3">Course Name</p>
